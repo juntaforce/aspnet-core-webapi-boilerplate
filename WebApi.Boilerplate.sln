@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\API\API.csproj", "{E4A9D0AE-6183-46C0-AAA0-BA2AA92D31A2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Core", "_Core", "{B66393A2-6D1B-4FF7-B6B7-50B7A5A5FDD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Infrastructure", "_Infrastructure", "{71050D23-76C7-425A-A196-45B00C0ABA4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CC587A77-C736-44EF-9988-C7B4539CF1B9} = {B66393A2-6D1B-4FF7-B6B7-50B7A5A5FDD1}
+		{10B49D1E-7905-4BEE-93A2-310B522016A8} = {71050D23-76C7-425A-A196-45B00C0ABA4F}
+		{580C8082-4D22-4031-B9BB-9E6AC356B4B5} = {B66393A2-6D1B-4FF7-B6B7-50B7A5A5FDD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {527747DA-E8F9-4278-A78A-DEF1ADF37029}
