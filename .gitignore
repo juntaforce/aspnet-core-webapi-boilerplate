@@ -345,3 +345,4 @@ _ReSharper.*
 bin
 obj
 packages
+/src/API/Logs
