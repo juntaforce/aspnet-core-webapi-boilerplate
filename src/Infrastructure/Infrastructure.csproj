@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>WebApi.Boilerplate.Infrastructure</RootNamespace>
+    <AssemblyName>WebApi.Boilerplate.Infrastructure</AssemblyName>
   </PropertyGroup>
 
 </Project>

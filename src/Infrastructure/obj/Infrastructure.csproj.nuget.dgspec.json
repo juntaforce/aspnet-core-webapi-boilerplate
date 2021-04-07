@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "D:\\Projects\\fullstackhero\\repos\\aspnet-core-webapi-boilerplate\\src\\Infrastructure\\Infrastructure.csproj",
-        "projectName": "Infrastructure",
+        "projectName": "WebApi.Boilerplate.Infrastructure",
         "projectPath": "D:\\Projects\\fullstackhero\\repos\\aspnet-core-webapi-boilerplate\\src\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\iammu\\.nuget\\packages\\",
         "outputPath": "D:\\Projects\\fullstackhero\\repos\\aspnet-core-webapi-boilerplate\\src\\Infrastructure\\obj\\",
