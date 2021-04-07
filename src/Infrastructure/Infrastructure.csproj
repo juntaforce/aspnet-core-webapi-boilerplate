@@ -6,4 +6,8 @@
     <AssemblyName>WebApi.Boilerplate.Infrastructure</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

@@ -6,4 +6,10 @@
     <AssemblyName>WebApi.Boilerplate.Application</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Responses\" />
+    <Folder Include="Requests\" />
+  </ItemGroup>
+
 </Project>
