@@ -4,7 +4,7 @@
 
 ## Coming Soon 🚀
 
-## Developement Roadmap
+## Development Roadmap
 
 - WebAPI Boilerplate - Initial Release : May 15,2021 (this repository)
 - Angular Material Boilerplate (client) - Initial Release : June 15,2021
