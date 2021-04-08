@@ -27,4 +27,9 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Files\Images\" />
+    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
 </Project>
