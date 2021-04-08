@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using System.Linq;
 using WebApi.Boilerplate.Application;
 using WebApi.Boilerplate.Application.Interfaces.Common;
@@ -41,6 +43,25 @@ namespace WebApi.Boilerplate.API.Extensions
                 }
             }
 
+            return services;
+        }
+
+        public static IServiceCollection AddVersioning(this IServiceCollection services)
+        {
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                config.ReportApiVersions = true;
+            });
+            return services;
+        }
+        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi.Boilerplate.API", Version = "v1" });
+            });
             return services;
         }
     }
