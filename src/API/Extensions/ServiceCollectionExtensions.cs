@@ -13,10 +13,11 @@ namespace WebApi.Boilerplate.API.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddDatabaseContexts(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddDatabaseContexts(this IServiceCollection services, IConfiguration configuration)
         {
             return services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
+
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             var assembliesToScan = (from t in new[] { typeof(DomainLayer), typeof(ApplicationLayer) } select t.Assembly).ToArray();
@@ -62,6 +63,7 @@ namespace WebApi.Boilerplate.API.Extensions
                 config.ReportApiVersions = true;
             });
         }
+
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
             return services.AddSwaggerGen(c =>
