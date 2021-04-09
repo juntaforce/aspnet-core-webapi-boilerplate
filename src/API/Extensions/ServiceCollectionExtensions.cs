@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.Linq;
 using WebApi.Boilerplate.Application;
 using WebApi.Boilerplate.Application.Interfaces.Common;
 using WebApi.Boilerplate.Domain;
+using WebApi.Boilerplate.Infrastructure.Contexts;
 
 namespace WebApi.Boilerplate.API.Extensions
 {
     public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddDatabaseContexts(this IServiceCollection services,IConfiguration configuration)
+        {
+            return services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        }
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             var assembliesToScan = (from t in new[] { typeof(DomainLayer), typeof(ApplicationLayer) } select t.Assembly).ToArray();
@@ -48,21 +55,19 @@ namespace WebApi.Boilerplate.API.Extensions
 
         public static IServiceCollection AddVersioning(this IServiceCollection services)
         {
-            services.AddApiVersioning(config =>
+            return services.AddApiVersioning(config =>
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 config.ReportApiVersions = true;
             });
-            return services;
         }
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
-            services.AddSwaggerGen(c =>
+            return services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi.Boilerplate.API", Version = "v1" });
             });
-            return services;
         }
     }
 }

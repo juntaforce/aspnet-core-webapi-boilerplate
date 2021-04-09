@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using WebApi.Boilerplate.API.Extensions;
 
 namespace WebApi.Boilerplate.API
@@ -12,10 +11,10 @@ namespace WebApi.Boilerplate.API
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration _configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -23,6 +22,7 @@ namespace WebApi.Boilerplate.API
             services.AddControllers();
             services.AddVersioning();
             services.AddSwagger();
+            services.AddDatabaseContexts(_configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

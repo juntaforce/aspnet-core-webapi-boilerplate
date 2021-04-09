@@ -9,3 +9,9 @@
 - WebAPI Boilerplate - Initial Release : May 15,2021 (this repository)
 - Angular Material Boilerplate (client) - Initial Release : June 15,2021
 - Blazor Material Boilerplate (client) - Initial Release : July 15,2021
+
+
+## Important
+
+- Install the Latest EF Tools - `dotnet tool install --global dotnet-ef`
+- If already installed, make sure your DOTNET CLI EF TOOLS are updated. Use this command - `dotnet tool update --global dotnet-ef`
