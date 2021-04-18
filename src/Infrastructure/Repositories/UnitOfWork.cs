@@ -7,7 +7,7 @@ using WebApi.Boilerplate.Application.Interfaces.Repositories;
 using WebApi.Boilerplate.Domain;
 using WebApi.Boilerplate.Infrastructure.Contexts;
 
-namespace WebApi.Boilerplate.Infrastructure
+namespace WebApi.Boilerplate.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -25,7 +25,7 @@ namespace WebApi.Boilerplate.Infrastructure
             return await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
+        public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
             if (_repositories == null)
                 _repositories = new Hashtable();
@@ -34,12 +34,12 @@ namespace WebApi.Boilerplate.Infrastructure
 
             if (!_repositories.ContainsKey(type))
             {
-                var repositoryType = typeof(Repository<>);
+                var repositoryType = typeof(GenericRepository<>);
                 var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
                 _repositories.Add(type, repositoryInstance);
             }
 
-            return (IRepository<TEntity>)_repositories[type];
+            return (IGenericRepository<TEntity>)_repositories[type];
         }
 
         public Task Rollback()

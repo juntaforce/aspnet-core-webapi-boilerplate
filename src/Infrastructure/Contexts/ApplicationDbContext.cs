@@ -11,7 +11,6 @@ namespace WebApi.Boilerplate.Infrastructure.Contexts
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
 

@@ -5,7 +5,7 @@ using WebApi.Boilerplate.Application.Specifications;
 
 namespace WebApi.Boilerplate.Application.Interfaces.Repositories
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IGenericRepository<TEntity> where TEntity : class
     {
         TEntity FindById(int id);
 

@@ -7,7 +7,7 @@ namespace WebApi.Boilerplate.Application.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity;
+        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity;
 
         Task<int> CommitAsync(CancellationToken cancellationToken);
 

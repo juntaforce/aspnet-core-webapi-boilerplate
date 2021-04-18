@@ -7,13 +7,13 @@ using WebApi.Boilerplate.Application.Specifications;
 using WebApi.Boilerplate.Domain;
 using WebApi.Boilerplate.Infrastructure.Contexts;
 
-namespace WebApi.Boilerplate.Infrastructure
+namespace WebApi.Boilerplate.Infrastructure.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         protected readonly ApplicationDbContext _context;
 
-        public Repository(ApplicationDbContext context)
+        public GenericRepository(ApplicationDbContext context)
         {
             _context = context;
         }
