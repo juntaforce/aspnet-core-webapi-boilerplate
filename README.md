@@ -22,8 +22,8 @@
 - [x] Serilog
 - [ ] Email Service - SMTP / SendGrid
 - [ ] User Management - Registration / Change Password / Forgot Password / Update Profile
-- [ ] Authentication - JWT Generation & Refresh Tokens
-- [ ] Respose Wrapper - For Uniform Response
+- [x] Authentication - JWT Generation & Refresh Tokens
+- [x] Respose Wrapper - For Uniform Response
 - [ ] Global Exception Handling Middleware
 - [ ] Clean Startup Classes & Service Registrations
 - [ ] Healthchecks
@@ -37,9 +37,6 @@
 - [x] EF Fluent Configurations over Model Builder
 - [ ] Automapper
 - [ ] Audit Trails
-
-
-
 
 ## Important
 

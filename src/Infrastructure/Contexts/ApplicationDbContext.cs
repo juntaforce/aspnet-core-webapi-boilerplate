@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using WebApi.Boilerplate.Domain.Entities;
+using WebApi.Boilerplate.Infrastructure.Configurations;
+using WebApi.Boilerplate.Infrastructure.Identity;
 
 namespace WebApi.Boilerplate.Infrastructure.Contexts
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
+    public class ApplicationDbContext : IdentityDbContext<ExtendedIdentityUser, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -15,9 +17,10 @@ namespace WebApi.Boilerplate.Infrastructure.Contexts
         public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        {         
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyIdentityConfiguration();
         }
     }
 }
