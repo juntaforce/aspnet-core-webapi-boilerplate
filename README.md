@@ -6,12 +6,46 @@
 
 ## Development Roadmap
 
-- WebAPI Boilerplate - Initial Release : May 15,2021 (this repository)
+- *WebAPI Boilerplate - Initial Release : May 15,2021 (this repository)*
 - Angular Material Boilerplate (client) - Initial Release : June 15,2021
 - Blazor Material Boilerplate (client) - Initial Release : July 15,2021
+
+## Feature Roadmap
+
+- [x] Onion Architecture
+- [x] EFCore - Code First Approach
+- [ ] CQRS with MediatR
+- [ ] MediatR Pipeline Behaviour
+- [x] Generic Repository with UOW
+- [x] Specification Pattern
+- [x] Swagger
+- [x] Serilog
+- [ ] Email Service - SMTP / SendGrid
+- [ ] User Management - Registration / Change Password / Forgot Password / Update Profile
+- [ ] Authentication - JWT Generation & Refresh Tokens
+- [ ] Respose Wrapper - For Uniform Response
+- [ ] Global Exception Handling Middleware
+- [ ] Clean Startup Classes & Service Registrations
+- [ ] Healthchecks
+- [x] Pagination (manage to include with Specification Pattern)
+- [ ] Distributed Caching - Cached Repository Implementation
+- [ ] Role Based Authorization
+- [ ] Role Management
+- [ ] Identity & Database Seeding via json files
+- [x] API Versioning
+- [ ] Fluent Validations
+- [x] EF Fluent Configurations over Model Builder
+- [ ] Automapper
+- [ ] Audit Trails
+
+
 
 
 ## Important
 
 - Install the Latest EF Tools - `dotnet tool install --global dotnet-ef`
 - If already installed, make sure your DOTNET CLI EF TOOLS are updated. Use this command - `dotnet tool update --global dotnet-ef`
+
+## Give a Star :star:
+
+If you found this Implementation helpful or used it in your Projects, do give it a star. Thanks! Or, If you are feeling really generous, [Support the Project with a small contribution!](https://www.buymeacoffee.com/codewithmukesh)
