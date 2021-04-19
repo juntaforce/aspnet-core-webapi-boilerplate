@@ -21,7 +21,7 @@ namespace WebApi.Boilerplate.API
         {
             services.AddControllers();
             services.AddVersioning();
-            services.AddSwagger();
+            services.AddSwaggerDocumentation();
             services.AddDatabaseContexts(_configuration);
         }
 
@@ -30,17 +30,14 @@ namespace WebApi.Boilerplate.API
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi.Boilerplate.API v1"));
+                app.UseDeveloperExceptionPage();                
             }
-
+            app.UseSwaggerDocumentation();
             app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

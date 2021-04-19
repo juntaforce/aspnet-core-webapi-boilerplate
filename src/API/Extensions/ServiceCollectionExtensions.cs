@@ -64,7 +64,7 @@ namespace WebApi.Boilerplate.API.Extensions
             });
         }
 
-        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
         {
             return services.AddSwaggerGen(c =>
             {
