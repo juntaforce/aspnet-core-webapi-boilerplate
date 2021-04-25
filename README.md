@@ -18,6 +18,7 @@
 - [ ] MediatR Pipeline Behaviour
 - [x] Generic Repository with UOW
 - [x] Specification Pattern
+- [ ] Cached Repository with Cache Keys
 - [x] Swagger
 - [x] Serilog
 - [ ] Email Service - SMTP / SendGrid
@@ -31,7 +32,7 @@
 - [ ] Distributed Caching - Cached Repository Implementation
 - [ ] Role Based Authorization
 - [ ] Role Management
-- [ ] Identity & Database Seeding via json files
+- [x] Identity & Database Seeding
 - [x] API Versioning
 - [ ] Fluent Validations
 - [x] EF Fluent Configurations over Model Builder
