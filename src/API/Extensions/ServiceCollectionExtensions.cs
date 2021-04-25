@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using WebApi.Boilerplate.Application;
 using WebApi.Boilerplate.Application.Interfaces.Common;
 using WebApi.Boilerplate.Domain;
 using WebApi.Boilerplate.Infrastructure.Contexts;
+using WebApi.Boilerplate.Infrastructure.Identity;
 
 namespace WebApi.Boilerplate.API.Extensions
 {
@@ -15,6 +17,7 @@ namespace WebApi.Boilerplate.API.Extensions
     {
         public static IServiceCollection AddDatabaseContexts(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddIdentity<ExtendedIdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             return services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
 
