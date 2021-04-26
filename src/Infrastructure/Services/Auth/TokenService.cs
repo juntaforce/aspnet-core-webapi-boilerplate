@@ -22,20 +22,20 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
     {
         private readonly UserManager<ExtendedIdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly JWTSettings _jwtSettings;
+        private readonly JWTSettings _config;
 
         public TokenService(
             UserManager<ExtendedIdentityUser> userManager, RoleManager<IdentityRole> roleManager,
-            IOptions<JWTSettings> appConfig, SignInManager<ExtendedIdentityUser> signInManager)
+            IOptions<JWTSettings> config, SignInManager<ExtendedIdentityUser> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            _jwtSettings = appConfig.Value;
+            _config = config.Value;
         }
 
-        public async Task<IResult<TokenResponse>> AuthenticateAsync(TokenRequest model)
+        public async Task<IResult<TokenResponse>> GetTokenAsync(TokenRequest request, string ipAddress)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
             {
                 return Result<TokenResponse>.Fail("User Not Found.");
@@ -48,49 +48,49 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
             {
                 return Result<TokenResponse>.Fail("E-Mail not confirmed.");
             }
-            var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
             if (!passwordValid)
             {
                 return Result<TokenResponse>.Fail("Invalid Credentials.");
             }
 
             user.RefreshToken = GenerateRefreshToken();
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_config.RefreshTokenExpirationInDays);
             await _userManager.UpdateAsync(user);
 
-            var token = await GenerateJwtAsync(user);
-            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken };
-            return Result<TokenResponse>.Success(response);
-        }
-
-        public async Task<IResult<TokenResponse>> RefreshTokenAsync(RefreshTokenRequest model)
-        {
-            if (model is null)
-            {
-                return Result<TokenResponse>.Fail("Invalid Client Token.");
-            }
-            var userPrincipal = GetPrincipalFromExpiredToken(model.Token);
-            var userEmail = userPrincipal.FindFirstValue(ClaimTypes.Email);
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user == null)
-                return Result<TokenResponse>.Fail("User Not Found.");
-            if (user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
-                return Result<TokenResponse>.Fail("Invalid Client Token.");
-            var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user));
-            user.RefreshToken = GenerateRefreshToken();
-            await _userManager.UpdateAsync(user);
-
+            var token = await GenerateJwtAsync(user, ipAddress);
             var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, RefreshTokenExpiryTime = user.RefreshTokenExpiryTime };
             return Result<TokenResponse>.Success(response);
         }
 
-        private async Task<string> GenerateJwtAsync(ExtendedIdentityUser user)
+        public async Task<IResult<TokenResponse>> RefreshTokenAsync(RefreshTokenRequest request, string ipAddress)
         {
-            var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user));
+            if (request is null)
+            {
+                return Result<TokenResponse>.Fail("Invalid Client Token.");
+            }
+            var userPrincipal = GetPrincipalFromExpiredToken(request.Token);
+            var userEmail = userPrincipal.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user == null)
+                return Result<TokenResponse>.Fail("User Not Found.");
+            if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+                return Result<TokenResponse>.Fail("Invalid Client Token.");
+            var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user,ipAddress));
+            user.RefreshToken = GenerateRefreshToken();
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_config.RefreshTokenExpirationInDays);
+            await _userManager.UpdateAsync(user);
+            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, RefreshTokenExpiryTime = user.RefreshTokenExpiryTime };
+            return Result<TokenResponse>.Success(response);
+        }
+
+        private async Task<string> GenerateJwtAsync(ExtendedIdentityUser user,string ipAddress)
+        {
+            var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user, ipAddress));
             return token;
         }
 
-        private async Task<IEnumerable<Claim>> GetClaimsAsync(ExtendedIdentityUser user)
+        private async Task<IEnumerable<Claim>> GetClaimsAsync(ExtendedIdentityUser user,string ipAddress)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
@@ -106,19 +106,18 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
                     permissionClaims.Add(permission);
                 }
             }
-
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.FirstName),
                 new Claim(ClaimTypes.Surname, user.LastName),
-                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty),
+                new Claim("ipAddress", ipAddress)
             }
             .Union(userClaims)
             .Union(roleClaims)
             .Union(permissionClaims);
-
             return claims;
         }
 
@@ -136,7 +135,7 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
         {
             var token = new JwtSecurityToken(
                claims: claims,
-               expires: DateTime.UtcNow.AddDays(2),
+               expires: DateTime.UtcNow.AddMinutes(_config.TokenExpirationInMinutes),
                signingCredentials: signingCredentials);
             var tokenHandler = new JwtSecurityTokenHandler();
             var encryptedToken = tokenHandler.WriteToken(token);
@@ -148,7 +147,7 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.Key)),
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 RoleClaimType = ClaimTypes.Role,
@@ -169,7 +168,7 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
 
         private SigningCredentials GetSigningCredentials()
         {
-            var secret = Encoding.UTF8.GetBytes(_jwtSettings.Secret);
+            var secret = Encoding.UTF8.GetBytes(_config.Key);
             return new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256);
         }
     }

@@ -11,9 +11,6 @@ namespace WebApi.Boilerplate.Application.Wrapper
         public Result()
         {
         }
-
-        public bool Failed => !Succeeded;
-
         public List<string> Messages { get; set; } = new List<string>();
 
         public bool Succeeded { get; set; }

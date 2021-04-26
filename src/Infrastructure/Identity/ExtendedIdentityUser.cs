@@ -3,7 +3,7 @@ using System;
 
 namespace WebApi.Boilerplate.Infrastructure.Identity
 {
-    //Map this to AppliactionUser in the Application Layer.
+    //Map this to ApplicationUser in the Application Layer.
     public class ExtendedIdentityUser : IdentityUser
     {
         public string FirstName { get; set; }

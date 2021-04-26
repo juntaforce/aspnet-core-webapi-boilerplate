@@ -8,6 +8,8 @@ namespace WebApi.Boilerplate.Application.Settings
 {
     public class JWTSettings
     {
-        public string Secret { get; set; }
+        public string Key { get; set; }
+        public int TokenExpirationInMinutes { get; set; }
+        public int RefreshTokenExpirationInDays { get; set; }
     }
 }

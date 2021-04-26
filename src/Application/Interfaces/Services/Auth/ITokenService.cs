@@ -7,9 +7,9 @@ namespace WebApi.Boilerplate.Application.Interfaces.Services.Auth
 {
     public interface ITokenService
     {
-        Task<IResult<TokenResponse>> AuthenticateAsync(TokenRequest model);
+        Task<IResult<TokenResponse>> GetTokenAsync(TokenRequest model,string ipAddress);
 
-        Task<IResult<TokenResponse>> RefreshTokenAsync(RefreshTokenRequest model);
+        Task<IResult<TokenResponse>> RefreshTokenAsync(RefreshTokenRequest model, string ipAddress);
     }
 }
 

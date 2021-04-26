@@ -33,6 +33,7 @@
 - [ ] Role Based Authorization
 - [ ] Role Management
 - [x] Identity & Database Seeding
+- [x] Token & Refresh Token Generation
 - [x] API Versioning
 - [ ] Fluent Validations
 - [x] EF Fluent Configurations over Model Builder
