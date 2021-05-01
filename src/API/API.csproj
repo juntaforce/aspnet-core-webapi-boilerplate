@@ -5,7 +5,9 @@
     <RootNamespace>WebApi.Boilerplate.API</RootNamespace>
     <AssemblyName>WebApi.Boilerplate.API</AssemblyName>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\Projects\fullstackhero\repos\aspnet-core-webapi-boilerplate\src\API\WebApi.Boilerplate.API.xml</DocumentationFile>
   </PropertyGroup>

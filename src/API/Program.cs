@@ -27,7 +27,6 @@ namespace WebApi.Boilerplate.API
                 await context.Database.MigrateAsync();
                 var userManager = services.GetRequiredService<UserManager<ExtendedIdentityUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
                 await Infrastructure.Identity.Seeds.DefaultRoles.SeedAsync( roleManager);
                 await Infrastructure.Identity.Seeds.DefaultAdministrator.SeedAsync(userManager);
                 await Infrastructure.Identity.Seeds.DefaultBasicUser.SeedAsync(userManager);
