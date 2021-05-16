@@ -14,22 +14,22 @@
 
 - [x] Onion Architecture
 - [x] EFCore - Code First Approach
-- [ ] CQRS with MediatR
+- [ ] CQRS with MediatR (for implementation-sample branch)
 - [ ] MediatR Pipeline Behaviour
 - [x] Generic Repository with UOW
 - [x] Specification Pattern
-- [ ] Cached Repository with Cache Keys
+- [ ] Cached Repository with Cache Keys (for implementation-sample branch)
 - [x] Swagger
 - [x] Serilog
-- [ ] Email Service - SMTP / SendGrid
+- [x] Email Service - SMTP / SendGrid
 - [x] User Management - Registration / Change Password / Forgot Password / Update Profile
 - [x] Authentication - JWT Generation & Refresh Tokens
 - [x] Respose Wrapper - For Uniform Response
 - [x] Global Exception Handling Middleware
-- [ ] Clean Startup Classes & Service Registrations
+- [x] Clean Startup Classes & Service Registrations
 - [ ] Healthchecks
 - [x] Pagination (manage to include with Specification Pattern)
-- [ ] Distributed Caching - Cached Repository Implementation
+- [ ] Distributed Caching - Cached Repository Implementation (for implementation-sample branch)
 - [ ] Role Based Authorization
 - [ ] Role Management
 - [x] Identity & Database Seeding

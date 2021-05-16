@@ -24,6 +24,7 @@ namespace WebApi.Boilerplate.API
             services.AddApplicationLayer();
             services.RegisterApplicationServices();
             services.RegisterApplicationSettings(_configuration);
+            services.RegisterSharedInfrastructure(_configuration);
             services.AddJwtAuthentication(_configuration.GetSection("JWTSettings"));
             services.AddControllers();
             services.AddVersioning();
