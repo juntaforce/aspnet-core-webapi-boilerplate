@@ -6,8 +6,8 @@
 
 ## Development Roadmap
 
-- *WebAPI Boilerplate - Initial Release : May 15,2021 (this repository)*
-- Angular Material Boilerplate (client) - Initial Release : June 15,2021
+- *WebAPI Boilerplate - Initial Release : June 1st Week,2021
+- Angular Material Boilerplate (client) - Initial Release : July 1st week,2021
 - Blazor Material Boilerplate (client) - Initial Release : July 15,2021
 
 ## Feature Roadmap
