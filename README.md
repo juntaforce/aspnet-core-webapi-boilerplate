@@ -22,7 +22,7 @@
 - [x] Swagger
 - [x] Serilog
 - [ ] Email Service - SMTP / SendGrid
-- [ ] User Management - Registration / Change Password / Forgot Password / Update Profile
+- [x] User Management - Registration / Change Password / Forgot Password / Update Profile
 - [x] Authentication - JWT Generation & Refresh Tokens
 - [x] Respose Wrapper - For Uniform Response
 - [ ] Global Exception Handling Middleware
@@ -37,7 +37,7 @@
 - [x] API Versioning
 - [ ] Fluent Validations
 - [x] EF Fluent Configurations over Model Builder
-- [ ] Automapper
+- [x] Automapper
 - [ ] Audit Trails
 
 ## Important

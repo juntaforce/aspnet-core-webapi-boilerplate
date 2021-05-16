@@ -2,6 +2,11 @@
 {
     public static class DefaultIdentityConstants
     {
+        public static class RoleConstant
+        {
+            public const string AdministratorRole = "Administrator";
+            public const string BasicRole = "Basic";
+        }
         public static class DefaultAdministrator
         {
             public const string UserName = "administrator";

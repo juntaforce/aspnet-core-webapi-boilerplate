@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApi.Boilerplate.API.Extensions;
+using WebApi.Boilerplate.Application.Extensions;
 
 namespace WebApi.Boilerplate.API
 {
@@ -19,6 +20,7 @@ namespace WebApi.Boilerplate.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationLayer();
             services.RegisterApplicationServices();
             services.RegisterApplicationSettings(_configuration);
             services.AddJwtAuthentication(_configuration.GetSection("JWTSettings"));

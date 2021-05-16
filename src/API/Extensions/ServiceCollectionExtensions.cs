@@ -16,12 +16,14 @@ using System.Text;
 using WebApi.Boilerplate.Application;
 using WebApi.Boilerplate.Application.Interfaces.Common;
 using WebApi.Boilerplate.Application.Interfaces.Services.Auth;
+using WebApi.Boilerplate.Application.Interfaces.Services.Users;
 using WebApi.Boilerplate.Application.Settings;
 using WebApi.Boilerplate.Application.Wrapper;
 using WebApi.Boilerplate.Domain;
 using WebApi.Boilerplate.Infrastructure.Contexts;
 using WebApi.Boilerplate.Infrastructure.Identity;
 using WebApi.Boilerplate.Infrastructure.Services.Auth;
+using WebApi.Boilerplate.Infrastructure.Services.Users;
 
 namespace WebApi.Boilerplate.API.Extensions
 {
@@ -36,7 +38,7 @@ namespace WebApi.Boilerplate.API.Extensions
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<ITokenService, TokenService>();
-
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
 
