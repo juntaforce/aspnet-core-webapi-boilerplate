@@ -68,9 +68,6 @@ namespace WebApi.Boilerplate.API.Extensions
         {
             return services.AddSwaggerGen(c =>
             {
-                //TODO - Lowercase Swagger Documents
-                //c.DocumentFilter<LowercaseDocumentFilter>();
-                //Refer - https://gist.github.com/rafalkasa/01d5e3b265e5aa075678e0adfd54e23f
                 c.IncludeXmlComments(string.Format(@"{0}\WebApi.Boilerplate.API.xml", System.AppDomain.CurrentDomain.BaseDirectory));
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
