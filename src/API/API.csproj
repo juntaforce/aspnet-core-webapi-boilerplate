@@ -42,7 +42,6 @@
   <ItemGroup>
     <Folder Include="Files\Images\" />
     <Folder Include="Logs\" />
-    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>

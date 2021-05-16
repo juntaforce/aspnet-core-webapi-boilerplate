@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApi.Boilerplate.API.Extensions;
+using WebApi.Boilerplate.API.Middlewares;
 using WebApi.Boilerplate.Application.Extensions;
 
 namespace WebApi.Boilerplate.API
@@ -40,7 +41,7 @@ namespace WebApi.Boilerplate.API
             }
             app.UseSwaggerDocumentation();
             app.UseHttpsRedirection();
-
+            app.UseMiddleware<GlobalErrorHandler>();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

@@ -25,7 +25,7 @@
 - [x] User Management - Registration / Change Password / Forgot Password / Update Profile
 - [x] Authentication - JWT Generation & Refresh Tokens
 - [x] Respose Wrapper - For Uniform Response
-- [ ] Global Exception Handling Middleware
+- [x] Global Exception Handling Middleware
 - [ ] Clean Startup Classes & Service Registrations
 - [ ] Healthchecks
 - [x] Pagination (manage to include with Specification Pattern)
