@@ -10,18 +10,14 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using WebApi.Boilerplate.Application;
 using WebApi.Boilerplate.Application.Configurations;
-using WebApi.Boilerplate.Application.Interfaces.Common;
 using WebApi.Boilerplate.Application.Interfaces.Services.Auth;
 using WebApi.Boilerplate.Application.Interfaces.Services.Shared;
 using WebApi.Boilerplate.Application.Interfaces.Services.Users;
 using WebApi.Boilerplate.Application.Settings;
 using WebApi.Boilerplate.Application.Wrapper;
-using WebApi.Boilerplate.Domain;
 using WebApi.Boilerplate.Infrastructure.Contexts;
 using WebApi.Boilerplate.Infrastructure.Identity;
 using WebApi.Boilerplate.Infrastructure.Services.Auth;
@@ -54,18 +50,20 @@ namespace WebApi.Boilerplate.API.Extensions
                 config.ReportApiVersions = true;
             });
         }
-        public static IServiceCollection RegisterApplicationSettings(this IServiceCollection services,IConfiguration configuration)
+
+        public static IServiceCollection RegisterApplicationSettings(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JWTSettings>(configuration.GetSection("JWTSettings"));
             services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
             return services;
-           
         }
+
         public static IServiceCollection RegisterSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
-        {            
+        {
             services.AddTransient<IMailService, SMTPMailService>();
             return services;
         }
+
         public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
         {
             return services.AddSwaggerGen(c =>
@@ -111,6 +109,7 @@ namespace WebApi.Boilerplate.API.Extensions
                 });
             });
         }
+
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfigurationSection config)
         {
             var jwtSettings = config.Get<JWTSettings>();

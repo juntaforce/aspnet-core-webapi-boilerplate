@@ -7,6 +7,7 @@
             public const string AdministratorRole = "Administrator";
             public const string BasicRole = "Basic";
         }
+
         public static class DefaultAdministrator
         {
             public const string UserName = "administrator";
@@ -15,6 +16,7 @@
             public const string LastName = "Murugan";
             public const string Password = "123Pa$$word!";
         }
+
         public static class DefaultBasicUser
         {
             public const string UserName = "basicuser";

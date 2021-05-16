@@ -72,7 +72,7 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Users
                         //BackgroundJob.Enqueue(() => _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" }));
                         return Result<string>.Success(user.Id, message: $"User Registered. Please check your Mailbox to verify!");
                     }
-                    return Result<string>.Success(user.Id, message:$"User Registered");
+                    return Result<string>.Success(user.Id, message: $"User Registered");
                 }
                 else
                 {

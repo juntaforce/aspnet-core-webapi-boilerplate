@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebApi.Boilerplate.Application.Wrapper
@@ -11,6 +8,7 @@ namespace WebApi.Boilerplate.Application.Wrapper
         public Result()
         {
         }
+
         public List<string> Messages { get; set; } = new List<string>();
 
         public bool Succeeded { get; set; }

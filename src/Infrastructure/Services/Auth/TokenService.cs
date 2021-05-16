@@ -76,7 +76,7 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
                 return Result<TokenResponse>.Fail("User Not Found.");
             if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
                 return Result<TokenResponse>.Fail("Invalid Client Token.");
-            var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user,ipAddress));
+            var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user, ipAddress));
             user.RefreshToken = GenerateRefreshToken();
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_config.RefreshTokenExpirationInDays);
             await _userManager.UpdateAsync(user);
@@ -84,13 +84,13 @@ namespace WebApi.Boilerplate.Infrastructure.Services.Auth
             return Result<TokenResponse>.Success(response);
         }
 
-        private async Task<string> GenerateJwtAsync(ExtendedIdentityUser user,string ipAddress)
+        private async Task<string> GenerateJwtAsync(ExtendedIdentityUser user, string ipAddress)
         {
             var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user, ipAddress));
             return token;
         }
 
-        private async Task<IEnumerable<Claim>> GetClaimsAsync(ExtendedIdentityUser user,string ipAddress)
+        private async Task<IEnumerable<Claim>> GetClaimsAsync(ExtendedIdentityUser user, string ipAddress)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);

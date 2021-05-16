@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using WebApi.Boilerplate.Application.Constants;
 using WebApi.Boilerplate.Application.Enums;
